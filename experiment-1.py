@@ -46,7 +46,7 @@ class ManualControl:
     self.avail_actions = np.expand_dims(self.avail_actions, axis=0)
 
     self.initialized = False
-    self.cout = open("out-experiment-2.txt", "w")
+    self.cout = open("out-experiment-1.txt", "w")
   
   def reset(self):
     timestep = self.env.reset() 
@@ -55,10 +55,10 @@ class ManualControl:
     # NOTE RAFAEL: Uncomment this if you want to play music
     # Motivational music: thescript.mp3
     # Neutral music: debussy.mp3
-    if not self.initialized:
-      pygame.mixer.music.load(path / "music/debussy.mp3")
-      pygame.mixer.music.play(-1)
-      self.initialized = True
+    # if not self.initialized:
+    #   pygame.mixer.music.load(path / "music/thescript.mp3")
+    #   pygame.mixer.music.play(-1)
+    #   self.initialized = True
     
     self.actor.init_hidden()
     return timestep
@@ -172,9 +172,9 @@ if __name__ == "__main__":
 
   # NOTE RAFAEL: Just uncomment the env you want to be bundling 
   # (only the call line -- keep the object attributes below it).
-  # env = multigrid.PredatorPrey( 
+  env = multigrid.PredatorPrey( 
   # env = multigrid.PlatePath(
-  env = multigrid.LumberJack(
+  # env = multigrid.LumberJack(
     tile_size=args.tile_size,
     agent_pov=args.agent_pov,
     agent_view_size=args.agent_view_size,
@@ -215,12 +215,12 @@ if __name__ == "__main__":
   
   # NOTE RAFAEL: Normally this should run, but just in case, you need to consider the path
   # in respect to the bundled folder _internal (see examples)
-  path = pathlib.Path(__file__).parents[1] # use 2 for building // 0 for testing
+  path = pathlib.Path(__file__).parents[0] # use 2 for building // 0 for testing
   
   # NOTE RAFAEL: Just uncomment the env you want to be bundling
-  # actor.load(path / "checkpoints/PredatorPrey-v0", 11285, 491588)
+  actor.load(path / "checkpoints/PredatorPrey-v0", 11285, 491588)
   # actor.load(path / "checkpoints/PlatePath-v0", 11224, 1112894)
-  actor.load(path / "checkpoints/LumberJack-NoIndicator-v0", 11600, 1160000)
+  # actor.load(path / "checkpoints/LumberJack-NoIndicator-v0", 11600, 1160000)
 
   manual_control = ManualControl(env, actor)
   manual_control.run()

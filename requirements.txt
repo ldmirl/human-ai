@@ -2,3 +2,4 @@ dm_env
 pygame
 numpy
 torch
+einops
