@@ -1,0 +1,1 @@
+from torchmarl.modules.vdn import VDN, VDNNet
