@@ -141,7 +141,7 @@ class Grid:
         agent_here = [np.array_equal(agent.cur_pos, (i, j)) for agent in agents]
         agent_id = np.argmax(agent_here) if any(agent_here) else None
         agent_here = agents[agent_id] if agent_id is not None else None
-        # if not highlight_mask[i, j]: continue # NOTE: DO NOT KEEP THIS!!!!
+        if not highlight_mask[i, j]: continue # NOTE: DO NOT KEEP THIS!!!!
         assert highlight_mask is not None
         tile_img = Grid.render_tile(
             cell,
